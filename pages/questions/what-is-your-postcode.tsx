@@ -7,8 +7,9 @@ import { FormEvent, useState } from 'react'
 type PostcodeResult = { id: number, address: string }
 
 
-export const getServerSideProps: GetServerSideProps<{ data: PostcodeResult[] }> = async (context) => {
-  const res = await fetch(`${context.req.headers.host}/api/postcode-search?postcode=${context.query.postcode}`)
+export const getServerSideProps: GetServerSideProps<{ data: PostcodeResult[] }> = async ( { req, query } ) => {
+  const proto = req.headers["x-forwarded-proto"] ? "https" : "http";
+  const res = await fetch(`${proto}://${req.headers.host}/api/postcode-search?postcode=${query.postcode}`)
   const data: PostcodeResult[] = await res.json()
 
   return {
