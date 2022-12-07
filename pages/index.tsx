@@ -12,10 +12,10 @@ export default function Home() {
             <a className="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
           </li>
           <li className="govuk-breadcrumbs__list-item">
-            <a className="govuk-breadcrumbs__link" href="#">Section</a>
+            <a className="govuk-breadcrumbs__link" href="#">Coronavirus (COVID-19)</a>
           </li>
           <li className="govuk-breadcrumbs__list-item">
-            <a className="govuk-breadcrumbs__link">Subsection</a>
+            <a className="govuk-breadcrumbs__link">Testing for coronavirus (COVID-19)</a>
           </li>
         </ol>
       </div>
@@ -23,21 +23,22 @@ export default function Home() {
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
 
-          <h1 className="govuk-heading-xl">
-            Service name
+          <h1 className="govuk-heading-xl govuk-!-margin-top-8">
+            Order coronavirus (COVID-19) rapid lateral flow tests
           </h1>
+
+          <p className='govuk-body'>You might be eligible to order a free pack of rapid lateral flow tests to be sent to your home.</p>
 
           <p className='govuk-body'>Use this service to:</p>
 
           <ul className="govuk-list govuk-list--bullet">
-            <li>do something</li>
-            <li>update your name, address or other details</li>
-            <li>do something else</li>
+            <li>check if you’re eligible to order rapid lateral flow tests</li>
+            <li>order rapid lateral flow tests to be sent to your home if you’re eligible</li>
           </ul>
 
-          <p className='govuk-body'>Registering takes around 5 minutes.</p>
+          <p className='govuk-body'>This service takes around 5 minutes.</p>
 
-          <a href="#" role="button" draggable="false" className="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"  data-module="govuk-button">
+          <a href="/questions/where-do-you-live" role="button" draggable="false" className="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"  data-module="govuk-button">
             Start now
             <svg className="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
               <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
@@ -51,35 +52,6 @@ export default function Home() {
           <p className='govuk-body'>The online service is also <a href="#" className='govuk-link'>available in Welsh (ar gael yn Gymraeg)</a>.</p>
 
           <p className='govuk-body'>You can’t register for this service if you’re in the UK illegally.</p>
-
-        </div>
-
-        <div className="govuk-grid-column-one-third">
-
-          <aside className="app-related-items" role="complementary">
-            <h2 className="govuk-heading-m" id="subsection-title">
-              Subsection
-            </h2>
-            <nav role="navigation" aria-labelledby="subsection-title">
-              <ul className="govuk-list govuk-!-font-size-16">
-                <li>
-                  <a href="#" className='govuk-link'>
-                    Related link
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className='govuk-link'>
-                    Related link
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="govuk-!-font-weight-bold govuk-link">
-                    More <span className="govuk-visually-hidden">in Subsection</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </aside>
 
         </div>
       </div>

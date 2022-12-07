@@ -6,7 +6,7 @@ import Header from '../components/Header'
 export default function App({ Component, pageProps }: AppProps) {
   return <>
     <Header />
-    <main className="govuk-width-container">
+    <main className="govuk-width-container" role="main">
       <Component {...pageProps} />
     </main>
     <Footer />
