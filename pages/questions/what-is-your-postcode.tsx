@@ -7,9 +7,13 @@ import { FormEvent, useState } from 'react'
 type PostcodeResult = { id: number, address: string }
 
 
-export const getServerSideProps: GetServerSideProps<{ data: PostcodeResult[] }> = async ( { req, query } ) => {
-  const proto = req.headers["x-forwarded-proto"] ? "https" : "http";
-  const res = await fetch(`${proto}://${req.headers.host}/api/postcode-search?postcode=${query.postcode}`)
+export const getServerSideProps: GetServerSideProps<{ data: PostcodeResult[] }> = async ( { req, query } : any ) => {
+  const proto = req.headers["x-forwarded-proto"] ? "https" : "http"
+  const baseUrl = `${proto}://${req.headers.host}`
+  let url = new URL("/api/postcode-search", baseUrl)
+  if (query.postcode) url.searchParams.set('postcode', query.postcode)
+
+  const res = await fetch(url.toString())
   const data: PostcodeResult[] = await res.json()
 
   return {
@@ -58,7 +62,7 @@ export default function QuestionPagePostcode({ data }: InferGetServerSidePropsTy
               <h2 className="govuk-heading-m">
                 Results matching postcode
               </h2>
-              <ul>
+              <ul className="govuk-list govuk-list--bullet">
                 {results.map( (res : PostcodeResult) => (
                   <li key={res.id}>{res.address}</li>
                 ))}
