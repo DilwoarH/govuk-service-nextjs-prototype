@@ -6,7 +6,6 @@ import { FormEvent, useState } from 'react'
 
 type PostcodeResult = { id: number, address: string }
 
-
 export const getServerSideProps: GetServerSideProps<{ data: PostcodeResult[] }> = async ( { req, query } : any ) => {
   const proto = req.headers["x-forwarded-proto"] ? "https" : "http"
   const baseUrl = `${proto}://${req.headers.host}`
@@ -14,7 +13,7 @@ export const getServerSideProps: GetServerSideProps<{ data: PostcodeResult[] }> 
   if (query.postcode) url.searchParams.set('postcode', query.postcode)
 
   const res = await fetch(url.toString())
-  const data: PostcodeResult[] = await res.json()
+  const data : PostcodeResult[] = await res.json()
 
   return {
     props: {
@@ -26,19 +25,45 @@ export const getServerSideProps: GetServerSideProps<{ data: PostcodeResult[] }> 
 export default function QuestionPagePostcode({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter()
   const { postcode }  = router.query
-  const [results, setResults] = useState(data)
+  const [postcodeValue, setPostcodeValue] : any = useState(postcode)
+  const [results, setResults] : any = useState(data)
+
+  const handleChange = async (e: FormEvent) => {
+    const postcode : string = e.target.value
+    setPostcodeValue(postcode)
+
+    let url = new URL("/api/postcode-search", window.location.href)
+    if (postcode) url.searchParams.set('postcode', postcode)
+
+    const res = await fetch(url.toString())
+    const data : PostcodeResult[] = await res.json()
+
+    setResults(data)
+  }
+
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+
+    let url = new URL("/api/postcode-search", window.location.href)
+    if (postcodeValue) url.searchParams.set('postcode', postcodeValue)
+
+    const res = await fetch(url.toString())
+    const data : PostcodeResult[] = await res.json()
+
+    setResults(data)
+  }
 
   return (
     <div>
       <Head>
-        <title>Start page - GOVUK Service</title>
+        <title>What is your postcode? - GOVUK Service</title>
       </Head>
 
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
           <Link href="/" className="govuk-back-link">Back</Link>
 
-          <form action="" method="get" noValidate>
+          <form action="" method="get" noValidate onSubmit={onSubmit}>
             <fieldset className="govuk-fieldset govuk-!-margin-top-8">
               <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 className="govuk-fieldset__heading">
@@ -49,7 +74,7 @@ export default function QuestionPagePostcode({ data }: InferGetServerSidePropsTy
                 <label className="govuk-label" htmlFor="postcode">
                   Postcode
                 </label>
-                <input className="govuk-input govuk-input--width-10" id="postcode" name="postcode" defaultValue={postcode} type="text" autoComplete="postal-code" />
+                <input className="govuk-input govuk-input--width-10" id="postcode" name="postcode" defaultValue={postcode} onChange={handleChange} type="text" autoComplete="postal-code" />
               </div>
             </fieldset>
             <button className="govuk-button govuk-!-margin-top-3" data-module="govuk-button">
@@ -60,7 +85,7 @@ export default function QuestionPagePostcode({ data }: InferGetServerSidePropsTy
           {(results && results.length > 0) &&
             <div>
               <h2 className="govuk-heading-m">
-                Results matching postcode
+                Results matching postcode for {postcodeValue}
               </h2>
               <ul className="govuk-list govuk-list--bullet">
                 {results.map( (res : PostcodeResult) => (
