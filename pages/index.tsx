@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -9,13 +10,13 @@ export default function Home() {
       <div className="govuk-breadcrumbs">
         <ol className="govuk-breadcrumbs__list">
           <li className="govuk-breadcrumbs__list-item">
-            <a className="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+            <Link className="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</Link>
           </li>
           <li className="govuk-breadcrumbs__list-item">
-            <a className="govuk-breadcrumbs__link" href="#">Coronavirus (COVID-19)</a>
+            <Link className="govuk-breadcrumbs__link" href="#">Coronavirus (COVID-19)</Link>
           </li>
           <li className="govuk-breadcrumbs__list-item">
-            <a className="govuk-breadcrumbs__link">Testing for coronavirus (COVID-19)</a>
+            <Link className="govuk-breadcrumbs__link" href="#">Testing for coronavirus (COVID-19)</Link>
           </li>
         </ol>
       </div>
@@ -38,18 +39,18 @@ export default function Home() {
 
           <p className='govuk-body'>This service takes around 5 minutes.</p>
 
-          <a href="/questions/where-do-you-live" role="button" draggable="false" className="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"  data-module="govuk-button">
+          <Link href="/questions/where-do-you-live" role="button" draggable="false" className="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"  data-module="govuk-button">
             Start now
             <svg className="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
               <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
             </svg>
-          </a>
+          </Link>
 
           <h2 className="govuk-heading-m">Before you start</h2>
 
-          <p className='govuk-body'>You can also <a href="#" className='govuk-link'>register by post</a>.</p>
+          <p className='govuk-body'>You can also <Link href="#" className='govuk-link'>register by post</Link>.</p>
 
-          <p className='govuk-body'>The online service is also <a href="#" className='govuk-link'>available in Welsh (ar gael yn Gymraeg)</a>.</p>
+          <p className='govuk-body'>The online service is also <Link href="#" className='govuk-link'>available in Welsh (ar gael yn Gymraeg)</Link>.</p>
 
           <p className='govuk-body'>You can’t register for this service if you’re in the UK illegally.</p>
 
