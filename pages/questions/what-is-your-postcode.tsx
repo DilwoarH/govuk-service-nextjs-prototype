@@ -29,7 +29,8 @@ export default function QuestionPagePostcode({ data }: InferGetServerSidePropsTy
   const [results, setResults] : any = useState(data)
 
   const handleChange = async (e: FormEvent) => {
-    const postcode : string = e.target.value
+    const target = e.target as HTMLInputElement;
+    const postcode : string = target.value
     setPostcodeValue(postcode)
 
     let url = new URL("/api/postcode-search", window.location.href)
@@ -74,7 +75,10 @@ export default function QuestionPagePostcode({ data }: InferGetServerSidePropsTy
                 <label className="govuk-label" htmlFor="postcode">
                   Postcode
                 </label>
-                <input className="govuk-input govuk-input--width-10" id="postcode" name="postcode" defaultValue={postcode} onChange={handleChange} type="text" autoComplete="postal-code" />
+                <div id="postcode-hint" className="govuk-hint">
+                  Type `E1 8QS` for results
+                </div>
+                <input className="govuk-input govuk-input--width-10" id="postcode" name="postcode" defaultValue={postcode} onChange={handleChange} type="text" autoComplete="postal-code" aria-describedby="postcode-hint" />
               </div>
             </fieldset>
             <button className="govuk-button govuk-!-margin-top-3" data-module="govuk-button">
