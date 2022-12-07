@@ -15,7 +15,7 @@ export default function handler(
       { id: 2, address: "The Grind, 10 Whitechapel High St, London E1 8QS" },
       { id: 3, address: "The empty 6th floor, 10 Whitechapel High St, London E1 8QS" },
     ]
-  } else if (req.query.postcode) {
+  } else if (req.query.postcode && req.query.postcode.length > 1) {
     results = [
       { id: 1, address: "Some fancy place, 1 Downing street, London POST_CODE_HERE" },
     ]
