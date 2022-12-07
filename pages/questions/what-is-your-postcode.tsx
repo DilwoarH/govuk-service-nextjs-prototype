@@ -8,7 +8,7 @@ type PostcodeResult = { id: number, address: string }
 
 
 export const getServerSideProps: GetServerSideProps<{ data: PostcodeResult[] }> = async (context) => {
-  const res = await fetch(`http://localhost:3000/api/postcode-search?postcode=${context.query.postcode}`)
+  const res = await fetch(`${context.req.headers.host}/api/postcode-search?postcode=${context.query.postcode}`)
   const data: PostcodeResult[] = await res.json()
 
   return {
